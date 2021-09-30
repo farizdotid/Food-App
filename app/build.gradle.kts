@@ -35,13 +35,21 @@ android {
             applicationIdSuffix = ".staging"
             setDimension(AppConfig.dimension)
             buildConfigField("String", "BASE_URL", "\"https://maps.googleapis.com\"")
-            buildConfigField("String", "API_KEY_MAPS", "\"AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk\"")
+            buildConfigField(
+                "String",
+                "API_KEY_MAPS",
+                "\"AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk\""
+            )
         }
 
         create("production") {
             setDimension(AppConfig.dimension)
             buildConfigField("String", "BASE_URL", "\"https://maps.googleapis.com\"")
-            buildConfigField("String", "API_KEY_MAPS", "\"AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk\"")
+            buildConfigField(
+                "String",
+                "API_KEY_MAPS",
+                "\"AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk\""
+            )
         }
     }
 
@@ -60,15 +68,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    applicationVariants.all {
-        outputs.forEach { output ->
-            if (output is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
-                output.outputFileName =
-                    "food_${AppConfig.versionName}(${AppConfig.versionCode}).${output.outputFile.extension}"
-            }
-        }
     }
 }
 

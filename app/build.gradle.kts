@@ -21,19 +21,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    flavorDimensions(AppConfig.dimension)
-    productFlavors {
-        create("staging") {
-            applicationIdSuffix = ".staging"
-            setDimension(AppConfig.dimension)
+        getByName("debug") {
             buildConfigField("String", "BASE_URL", "\"https://maps.googleapis.com\"")
             buildConfigField(
                 "String",
@@ -42,16 +30,22 @@ android {
             )
         }
 
-        create("production") {
-            setDimension(AppConfig.dimension)
+        getByName("release") {
             buildConfigField("String", "BASE_URL", "\"https://maps.googleapis.com\"")
             buildConfigField(
                 "String",
                 "API_KEY_MAPS",
                 "\"AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk\""
             )
+
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
 
     viewBinding {
         android.buildFeatures.viewBinding = true
